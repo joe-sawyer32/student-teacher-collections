@@ -6,11 +6,9 @@ package com.theironyard;
 public class Teacher extends Student {
     @Override
     public String toString() {
-        return "Teacher{" +
-                "firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", id=" + getId() +
-                ", grade=" + getGrade() +
-                '}';
+        return "Teacher\n" +
+                "Name: '" + getFirstName() + " " + getLastName() + "'\n" +
+                "Id: " + getId() + "\n" +
+                "Grade: " + getGrade() + "\n";
     }
 }

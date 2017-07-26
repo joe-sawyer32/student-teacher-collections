@@ -1,17 +1,18 @@
 package com.theironyard;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+/**
+ * Created by Joe on 7/26/17.
+ */
+import java.util.*;
 
 public class Main {
 
     private static final int STUDENT_COUNT = 15;
-    private static final String[] FIRST_NAMES = new String[]{"John", "Jane", "Brenda", "Bobby", "Richard", "Roxanne", "Mike",
-            "Marie", "Emily", "Edward", "Caroline", "Charles", "Katherine", "Kip", "Octavius"};
-    private static final String[] LAST_NAMES = new String[]{"Doe", "Flagger", "Hipster", "Ajax", "Pincher", "Zippidy", "Wall",
-            "Smith", "Gunner", "Indigo", "Volatile", "Quinton", "Thoreau", "Underminer", "Leopard"};
+    private static final int TEACHER_COUNT = 3;
+    private static final String[] FIRST_NAMES = new String[]{"John", "Jane", "Brenda", "Bobby", "Richard", "Roxanne",
+            "Mike", "Marie", "Emily", "Edward", "Caroline", "Charles", "Katherine", "Kip", "Octavius"};
+    private static final String[] LAST_NAMES = new String[]{"Doe", "Flagger", "Hipster", "Ajax", "Pincher", "Zippidy",
+            "Wall", "Smith", "Gunner", "Indigo", "Volatile", "Quinton", "Thoreau", "Underminer", "Leopard"};
 
     public static void main(String[] args) {
         List<Student> firstGraders = new ArrayList<>();
@@ -25,5 +26,46 @@ public class Main {
             firstGraders.add(student);
         }
 
+        List<Teacher> teachers = new ArrayList<>();
+        Teacher teacher;
+        for (int i = 0; i < TEACHER_COUNT; i++) {
+            teacher = new Teacher();
+            teacher.setFirstName(FIRST_NAMES[i+4]); // pseudo-random
+            teacher.setLastName(LAST_NAMES[(i+1)*3]); // pseudo-random
+            teacher.setGrade(1);
+            teacher.setId(i);
+            teachers.add(teacher);
+        }
+        for (Teacher t : teachers) {
+            System.out.println(t);
+        }
+
+        Set<Student> studentSet1 = new HashSet<>();
+        Set<Student> studentSet2 = new HashSet<>();
+        Set<Student> studentSet3 = new HashSet<>();
+        for (int i = 0; i < STUDENT_COUNT; i++) {
+            if (i < 5) {
+                studentSet1.add(firstGraders.get(i));
+            } else if (i < 10) {
+                studentSet2.add(firstGraders.get(i));
+            } else {
+                studentSet3.add(firstGraders.get(i));
+            }
+        }
+
+        Map<Teacher, Set> firstGradeClasses = new HashMap<>();
+        for (int i = 0; i < TEACHER_COUNT; i++) {
+            if (i == 0) {
+                firstGradeClasses.put(teachers.get(i), studentSet1);
+            } else if (i == 1) {
+                firstGradeClasses.put(teachers.get(i), studentSet2);
+            } else {
+                firstGradeClasses.put(teachers.get(i), studentSet3);
+            }
+        }
+
+        System.out.println(firstGradeClasses.keySet());
+        System.out.println(firstGradeClasses.values());
+        System.out.println(firstGradeClasses.entrySet());
     }
 }
