@@ -64,8 +64,16 @@ public class Main {
             }
         }
 
-        System.out.println(firstGradeClasses.keySet());
-        System.out.println(firstGradeClasses.values());
-        System.out.println(firstGradeClasses.entrySet());
+        for (Teacher t : firstGradeClasses.keySet()) {
+            System.out.println(t);
+        }
+
+        for (Set s : firstGradeClasses.values()) {
+            System.out.println(s);
+        }
+
+        for (Map.Entry me : firstGradeClasses.entrySet()) {
+            System.out.println(me);
+        }
     }
 }
